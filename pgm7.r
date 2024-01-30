@@ -1,0 +1,17 @@
+library(dplyr)
+library(ggplot2)
+purchase_data<-data.frame(
+  CustomerId=c(101,102,103,104,105),
+  PurchaseAmount=c(150,120,160,110,170)
+)
+mean_purchase<-mean(purchase_data$PurchaseAmount)
+median_purchase<-median(purchase_data$PurchaseAmount)
+standard_deviation<-sd(purchase_data$PurchaseAmount)
+q1_purchase<-quantile(purchase_data$PurchaseAmount,probs=0.25)
+q3_purchase<-quantile(purchase_data$PurchaseAmount,probs=0.75)
+cat("mean:",mean_purchase)
+cat("median",median_purchase)
+cat("standard deviation:",standard_deviation)
+cat("1st quantile:",q1_purchase)
+cat("3rd quantile:",q3_purchase)
+print(ggplot(purchase_data,aes(x=PurchaseAmount))+geom_histogram(binwidth=50,fill="blue",color="black")+labs(title="distribution of purchase amounts",x="purchase amount",y="frequency"))
